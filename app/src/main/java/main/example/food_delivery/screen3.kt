@@ -25,11 +25,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+
 data class Hotel(val name: String, val dishes: List<Dish>)
 
 data class Dish(val name: String, val imageResId: Int, val price: Double, var isInCart: Boolean = false)
 @Composable
-fun Screen3() {
+fun Screen3(navController: NavHostController) {
     // Sample data representing multiple hotels and their dishes
     val hotels = listOf(
         Hotel("Fast Food Restro", listOf(
@@ -48,6 +50,7 @@ fun Screen3() {
             Dish("Passion Fruit Juice", R.drawable.passionfruit_juice, 3.99)
         ))
     )
+    //val checkedItems = remember { mutableStateOf(mutableListOf<Dish>()) }
 
     var selectedDish by remember { mutableStateOf<Dish?>(null) }
     var cart by remember { mutableStateOf<List<Dish>>(emptyList()) }
@@ -71,6 +74,7 @@ fun Screen3() {
 
             // Display the list of dishes for the hotel
             hotel.dishes.forEach { dish ->
+                //val isChecked = checkedItems.value.contains(dish)
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -100,14 +104,16 @@ fun Screen3() {
                     Checkbox(
                         checked = dish.isInCart,
                         onCheckedChange = { isChecked ->
-                            selectedDish = dish
+                            //selectedDish = dish
                             if (isChecked) {
                                 cart = cart + listOf(dish)
                             } else {
                                 cart = cart - listOf(dish)
                             }
+
                         }
                     )
+
                 }
             }
 
@@ -119,20 +125,15 @@ fun Screen3() {
         //Spacer(modifier = Modifier.height(16.dp))
     }
 
-    // Display the selected dish and cart
-    selectedDish?.let { dish ->
-        Text(
-            text = "Selected Dish: ${dish.name}",
-            modifier = Modifier.padding(16.dp),
-            fontWeight = FontWeight.Bold
-        )
-    }
-
-//    Text(
-//        text = "Cart: ${cart.size} items",
-//        modifier = Modifier.padding(16.dp),
-//        fontWeight = FontWeight.Bold
-//    )
+//    // Display the selected dish and cart
+//    selectedDish?.let { dish ->
+//        Text(
+//            text = "Selected Dish: ${dish.name}",
+//            modifier = Modifier.padding(16.dp),
+//            fontWeight = FontWeight.Bold
+//        )
+//    }
+    //val cartSize = checkedItems.value.size
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -148,9 +149,9 @@ fun Screen3() {
 
 }
 
-@Preview
-@Composable
-fun Screen3Preview() {
-    // Call your Screen3 composable here
-    Screen3()
-}
+//@Preview
+//@Composable
+//fun Screen3Preview() {
+//    // Call your Screen3 composable here
+//    Screen3(navController)
+//}

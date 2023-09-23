@@ -1,18 +1,12 @@
 package main.example.food_delivery
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import main.example.food_delivery.ui.theme.Food_deliveryTheme
 import android.annotation.SuppressLint
-import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -52,10 +46,11 @@ fun FoodDeliveryApp() {
 
     FoodDeliveryAppTheme {
         Scaffold(
-            topBar = {
-                TopAppBar(title = { Text(text = "Food Delivery App") })
-            }
-        ) {
+//            topBar = {
+//                TopAppBar(title = { Text(text = "Food Delivery App") })
+//            }
+        )
+            {
             NavHost(navController, startDestination = MainDestinations.SCREEN1_ROUTE) {
                 composable(MainDestinations.SCREEN1_ROUTE) {
                     Screen1(navController)
@@ -64,7 +59,7 @@ fun FoodDeliveryApp() {
                     Screen2(navController)
                 }
                 composable(MainDestinations.SCREEN3_ROUTE) {
-                    Screen3()
+                    Screen3(navController)
                 }
             }
         }
@@ -75,12 +70,11 @@ fun FoodDeliveryApp() {
 @Composable
 fun FoodDeliveryAppPreview() {
     FoodDeliveryAppTheme {
-        val navController = rememberNavController() // Create a NavController
+        val navController = rememberNavController()
         NavHost(navController, startDestination = MainDestinations.SCREEN1_ROUTE) {
             composable(MainDestinations.SCREEN1_ROUTE) {
-                Screen1(navController) // Pass the NavController to your initial screen
+                Screen1(navController)
             }
-            // Define other composables and routes as needed
         }
     }
 }

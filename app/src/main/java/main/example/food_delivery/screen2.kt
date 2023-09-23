@@ -54,7 +54,7 @@ fun Screen2(navController: NavController?) {
                             .fillMaxWidth()
                             .clickable {
                                 // Navigate to Screen3 when a hotel card is clicked
-                                navController?.navigate("${MainDestinations.SCREEN3_ROUTE}/$hotel")
+                                navController?.navigate("${MainDestinations.SCREEN3_ROUTE}")
                             }
                             .padding(8.dp)
                     ) {
